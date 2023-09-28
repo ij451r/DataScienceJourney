@@ -1,0 +1,139 @@
+1)
+select MAX(SOLD)
+from software;
+
+select MAX(TOTAL_SOLD) as Highest_Sold from (select SUM(SOLD) as TOTAL_SOLD from software group by DEVELOPIN)
+
+2)
+select COURSE, MIN(COURSE_FEE)
+from studies
+
+3)
+select MIN(DATEDIFF(yy,DOB,GETDATE())) as OLDEST_MALE_PROGRAMMER
+from PROGRAMMER;
+
+4)
+select AVG(DATEDIFF(yy,DOB,GETDATE())) as AVG_FEMALE_AGE
+from PROGRAMMER
+where GENDER='F';
+
+5)
+select PNAME, DATEDIFF(yy,DOJ,GETDATE()) as EXPERIENCE
+from PROGRAMMER
+order by DATEDIFF(yy,DOJ,GETDATE()) DESC;
+
+6)
+select COUNT(*) as PGDCA_PROGRAMMERS
+from studies
+where COURSE='PGDCA';
+
+7)
+select SUM(SCOST*SOLD) as REVENUE_FROM_C 
+from SOFTWARE
+where DEVELOPIN='C';
+
+8)
+select COUNT(*) as SABHARI_PROGRAMMERS_COUNT
+from STUDIES
+where INSTITUTE='SABHARI';
+
+9)
+select COUNT(*) as DBASE_PACKAGES_COUNT
+from SOFTWARE
+where DEVELOPIN='DBASE';
+
+10)
+select COUNT(*) as PRAGATHI_PROGRAMMERS_COUNT
+from STUDIES
+where INSTITUTE='PRAGATHI';
+
+11)
+select count(*) 
+from studies 
+where COURSE_FEE BETWEEN 5000 AND 10000;
+
+12)
+select count(*)
+from programmer
+where PROF1 IN ('COBOL','PASCAL') OR PROF2 IN ('COBOL','PASCAL');
+
+13)
+select count(*)
+from programmer 
+where GENDER='F';
+
+14)
+select AVG(SALARY) as AVG_SALARY
+from PROGRAMMER;
+
+15)
+select count(*) 
+from PROGRAMMER 
+where SALARY BETWEEN 2000 AND 4000;
+
+16)
+select PNAME, SCOST
+from software
+order by DEVELOPIN;
+
+17)
+select *
+from software soft
+join studies stud on soft.PNAME = stud.PNAME
+where stud.INSTITUTE = 'SABHARI';
+
+18)
+select TOP 1 PNAME
+from PROGRAMMER
+where YEAR(DOJ)=1992 and GENDER='F'
+order by DOB;
+
+19)
+select TOP 1 PNAME
+from PROGRAMMER
+where YEAR(DOB)=1965 and GENDER='M'
+order by DOB DESC;
+
+20)
+select TOP 1 *
+from software
+order by SCOS
+
+21)
+select PNAME
+from PROGRAMMER
+where GENDER='F' and salary > 3000 and PROF1 NOT IN ('C','CPP','OPRACLE','DBASE') and PROF2 NOT IN ('C','CPP','OPRACLE','DBASE');
+
+22)
+select TOP 1 PNAME
+from PROGRAMMER
+where PROF1 IN ('DBASE') or PROF2 IN ('DBASE')
+order by DOB DESC;
+
+23)
+select DEVELOPIN AS LANGUAGE
+from SOFTWARE
+group by DEVELOPIN
+having COUNT(DISTINCT PNAME) = 1;
+
+24)
+select TOP 1 PNAME
+from PROGRAMMER
+where GENDER='M' and (PROF1='PASCAL' OR PROF2='PASCAL')
+order by DOJ;
+
+25)
+select PNAME, DOJ
+from PROGRAMMER
+where DOJ = (select MAX(DOJ) from PROGRAMMER);
+
+26)
+select DEVELOPIN, count(*) as NumPackages
+from SOFTWARE
+where DCOST<1000
+group by DEVELOPIN;
+
+27)
+select MAX(SALARY) as MaxSalary, MIN(SALARY) as MinSalary, AVG(SALARY) as AvgSalary
+from PROGRAMMER
+where salary>20000

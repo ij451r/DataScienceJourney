@@ -1,0 +1,51 @@
+1)
+select avg(SCOST) 
+from software 
+where DEVELOPIN='PASCAL';
+
+2)
+select PNAME, DATEDIFF(yy,DOB,GETDATE()) as AGE 
+from programmer;
+
+3)
+select PNAME
+from studies
+where COURSE='DAP';
+
+4)
+select PNAME, DOB 
+from programmer
+where MONTH(DOB)=01;
+
+5)
+select * 
+from software
+where PNAME='RAMESH';
+
+6)
+select * 
+from software 
+where SCOST*SOLD>DCOST;
+
+7)
+select *
+from programmer
+where PROF1='C' or PROF2='C';
+
+8)
+select (PROF1+ ' and ' +PROF2) as Languages_Studied
+from programmer
+where GENDER='M';
+
+SELECT DISTINCT PROF1 FROM Programmer where GENDER='M' UNION SELECT DISTINCT PROF2 FROM Programmer where GENDER='M';
+
+
+9)
+select * 
+from programmer
+where YEAR(DOJ) < 1990;
+
+10)
+select PNAME
+from software
+where SCOST*SOLD>2*DCOST;

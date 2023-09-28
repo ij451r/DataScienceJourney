@@ -1,0 +1,60 @@
+1)
+select count(*) as PROGRAMMERS_NOT_KNOW_C_PASCAL
+from PROGRAMMER
+where PROF1 NOT IN ('C','PASCAL') AND PROF2 NOT IN ('C','PASCAL');
+
+2)
+select *
+from PROGRAMMER
+where 
+PROF1 NOT IN ('CLIPPER','COBOL','PASCAL') AND 
+PROF2 NOT IN ('CLIPPER','COBOL','PASCAL')
+
+3)
+select DEVELOPIN, AVG(DCOST), AVG(SCOST), AVG(SCOST*SOLD)
+from SOFTWARE
+group by DEVELOPIN;
+
+4)
+Select P.PNAME, ISNULL(COUNT(S.PNAME),0) as NumberOfPackagesDev
+from PROGRAMMER P
+left join SOFTWARE S ON P.PNAME = S.PNAME
+group by P.PNAME;
+
+5)
+select *
+from SOFTWARE S
+
+
+
+
+
+select DISTINCT PROF1 
+from PRORAMMER
+UNION
+select DISTINCT PROF2
+from PROGRAMMER
+
+
+select Language, SUM(NumberOfProgrammers) as  from (SELECT PROF1 AS Language, COUNT(*) AS NumberOfProgrammers FROM PROGRAMMER GROUP BY PROF1
+UNION ALL SELECT PROF2 AS Language, COUNT(*) AS NumberOfProgrammers FROM PROGRAMMER GROUP BY PROF2) as subquery group by Language
+
+
+select Language, SUM(NumberOfProgrammers) 
+from (
+    SELECT PROF1 AS Language, COUNT(*) AS NumberOfProgrammers 
+    FROM PROGRAMMER 
+    GROUP BY PROF1
+    UNION 
+    SELECT PROF2 AS Language, COUNT(*) AS NumberOfProgrammers 
+    FROM PROGRAMMER 
+    GROUP BY PROF2
+    ) as subquery 
+group by Language
+
+
+SELECT SUM(NumberOfProgrammers) FROM (SELECT PROF1 AS Language, COUNT(*) AS NumberOfProgrammers FROM PROGRAMMER GROUP BY PROF1 UNION SELECT PROF2 AS Language, COUNT(*) AS NumberOfProgrammers FROM PROGRAMMER GROUP BY PROF2) AS subquery
+
+    SELECT PROF1 AS Language, COUNT(*) AS NumberOfProgrammers 
+    FROM PROGRAMMER 
+    GROUP BY PROF1
